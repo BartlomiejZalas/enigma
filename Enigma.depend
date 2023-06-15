@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1686427346 source:/home/baza/Projects/Enigma/main.cpp
+	"Rotor.h"
+	"functions.h"
+	<iostream>
+
+1686407499 source:/home/baza/Projects/Enigma/test.cpp
+	<boost/test/included/unit_test.hpp>
+
+1686427439 source:/home/baza/Projects/Enigma/Rotor.cpp
+	"Rotor.h"
+	<iostream>
+	"functions.h"
+
+1686425696 /home/baza/Projects/Enigma/Rotor.h
+
+1686424498 source:/home/baza/Projects/Enigma/functions.cpp
+
+1686420307 /home/baza/Projects/Enigma/functions.h
+
