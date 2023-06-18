@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
-project(my_project)
+project(enigma)
 
-# GoogleTest requires at least C++14
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -16,26 +15,24 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(
-  hello_test
-  hello_test.cpp
-  functions.cpp
-)
-
-add_executable(
-  main
-  main.cpp
+set(
+  SRC
   functions.cpp
   functions.h
   Rotor.cpp
   Rotor.h
 )
+set(LIBRARY_NAME ${PROJECT_NAME}-lib)
+set(MAIN_NAME ${PROJECT_NAME})
+set(TEST_NAME ${PROJECT_NAME}-tests)
 
+add_library(${LIBRARY_NAME} ${SRC})
+add_executable(${MAIN_NAME} main.cpp)
+add_executable(${TEST_NAME} hello_test.cpp)
 
-target_link_libraries(
-  hello_test
-  GTest::gtest_main
-)
+target_link_libraries(${MAIN_NAME}  ${LIBRARY_NAME})
+target_link_libraries(${TEST_NAME}  ${LIBRARY_NAME})
+target_link_libraries(${TEST_NAME}  GTest::gtest_main)
 
 include(GoogleTest)
-gtest_discover_tests(hello_test)
+gtest_discover_tests(${TEST_NAME})
