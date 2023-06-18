@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
-#include "functions.h"
+#include "../src/functions.h"
 
-TEST(HelloTest, BasicAssertions) {
+TEST(functions_test, charToInt) {
     EXPECT_EQ(charToInt('A'), 1);
     EXPECT_EQ(charToInt('B'), 2);
     EXPECT_EQ(charToInt('Z'), 26);

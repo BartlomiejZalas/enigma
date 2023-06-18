@@ -1,9 +1,6 @@
-#define BOOST_TEST_NO_MAIN
-#define BOOST_TEST_ALTERNATIVE_INIT_API
-
-#include "Rotor.h"
-#include "functions.h"
 #include <iostream>
+#include "src/Rotor.h"
+#include "src/functions.h"
 
 using namespace std;
 

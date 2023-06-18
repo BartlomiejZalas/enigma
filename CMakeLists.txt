@@ -15,20 +15,16 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-set(
-  SRC
-  functions.cpp
-  functions.h
-  Rotor.cpp
-  Rotor.h
-)
 set(LIBRARY_NAME ${PROJECT_NAME}-lib)
 set(MAIN_NAME ${PROJECT_NAME})
 set(TEST_NAME ${PROJECT_NAME}-tests)
 
-add_library(${LIBRARY_NAME} ${SRC})
+file(GLOB TEST_FILES tests/*.cpp)
+file(GLOB SRC_FILES src/*.cpp)
+
+add_library(${LIBRARY_NAME} ${SRC_FILES})
 add_executable(${MAIN_NAME} main.cpp)
-add_executable(${TEST_NAME} hello_test.cpp)
+add_executable(${TEST_NAME} ${TEST_FILES})
 
 target_link_libraries(${MAIN_NAME}  ${LIBRARY_NAME})
 target_link_libraries(${TEST_NAME}  ${LIBRARY_NAME})
