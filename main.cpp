@@ -1,6 +1,7 @@
 #include <iostream>
 #include "src/Rotor.h"
 #include "src/Plugboard.h"
+#include "src/Enigma.h"
 #include "src/functions.h"
 
 using namespace std;
@@ -9,26 +10,19 @@ int main()
 {
     cout << "Enigma Machine" << endl;
 
-    Rotor rotor_I("EKMFLGDQVZNTOWYHXUSPAIBRCJ", 'A');
-   
-    cout << endl << " encode test - initial offset A (0)" << endl;
+    auto rotorI = make_unique<Rotor>("EKMFLGDQVZNTOWYHXUSPAIBRCJ", 'A');
+    auto rotorII = make_unique<Rotor>("AJDKSIRUXBLHWTMCQGZNPYFVOE", 'A');
+    auto rotorIII = make_unique<Rotor>("BDFHJLCPRTXVZNYEIWGAKMUSQO", 'A');
 
-    cout << rotor_I.encode('A') <<" should be E" << endl;
+    vector<pair<char, char>> pairs = {};
+    auto plugboard = make_unique<Plugboard>(pairs);
 
-    rotor_I.rotate();
+    Enigma enigma(rotorI, rotorII, rotorIII, plugboard);
 
-    cout << endl << "encode test - initial offset B (1)" << endl;
+    char toEncode = 'A';
+    char encoded = enigma.encode('A');
 
-    cout << rotor_I.encode('A') <<" should be J" << endl;
+    cout << "Letter '" << toEncode << "' encoded to '" << encoded << "'." << endl;
 
-    vector<pair<char, char>> pairs = {make_pair('A', 'B')};
-    Plugboard plugboard(pairs);
-  
-    cout << endl << "plugboard encode test" << endl;
-    cout << plugboard.encode('A') <<" should be B" << endl;
-    cout << plugboard.encode('B') <<" should be A" << endl;
-    cout << plugboard.encode('C') <<" should be C" << endl;
-    
     return 0;
 }
-

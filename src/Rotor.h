@@ -5,13 +5,14 @@ class Rotor
 {
 
 private:
-    char* wiring;
+    const char *wiring;
     int offset;
 
 public:
-    Rotor(char* w, char i);
+    Rotor(const char *w, char i);
     void rotate();
     char encode(char letter);
+    int getOffset();
 };
 
 #endif // ROTOR_H
