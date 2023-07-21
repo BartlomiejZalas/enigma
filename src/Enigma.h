@@ -1,10 +1,12 @@
 #ifndef ENIGMA_H
 #define ENIGMA_H
 
-#include <memory>
 #include "Rotor.h"
+#include "Reflector.h"
 #include "Plugboard.h"
 #include "functions.h"
+
+#include <memory>
 
 using namespace std;
 
@@ -18,6 +20,8 @@ private:
 
     unique_ptr<Plugboard> plugboard;
 
+    unique_ptr<Reflector> reflector;
+
     int rotorITurningNoch = charToInt('R');
     int rotorIITurningNoch = charToInt('F');
     int rotorIIITurningNoch = charToInt('W');
@@ -27,7 +31,8 @@ public:
         unique_ptr<Rotor> &r1,
         unique_ptr<Rotor> &r2,
         unique_ptr<Rotor> &r3,
-        unique_ptr<Plugboard> &pb);
+        unique_ptr<Plugboard> &pb,
+        unique_ptr<Reflector> &r);
 
     char encode(char letter);
 };

@@ -1,12 +1,14 @@
 #ifndef ROTOR_H
 #define ROTOR_H
 
+#include "WiringRing.h"
+
 class Rotor
 {
 
 private:
-    const char *wiring;
     int offset;
+    WiringRing wiringRing;
 
 public:
     Rotor(const char *w, char i);

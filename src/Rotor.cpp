@@ -1,10 +1,15 @@
 #include "Rotor.h"
-#include <iostream>
+#include "WiringRing.h"
 #include "functions.h"
+
+#include <iostream>
 
 using namespace std;
 
-Rotor::Rotor(const char *w, char io) : wiring(w), offset(charToInt(io) - 1){};
+Rotor::Rotor(const char *w, char initialOffset) : offset(charToInt(initialOffset) - 1)
+{
+    this->wiringRing = WiringRing(w);
+};
 
 void Rotor::rotate()
 {
@@ -13,10 +18,7 @@ void Rotor::rotate()
 
 char Rotor::encode(char letter)
 {
-    char wiringToLetter = this->wiring[(charToInt(letter) - 1 + this->offset) % 26];
-    int wiringShift = charToInt(wiringToLetter) - (charToInt(letter) + this->offset % 26);
-    int encodedLetterIndex = charToInt(letter) + wiringShift;
-    return intToChar(encodedLetterIndex);
+    return this->wiringRing.encode(letter, this->offset);
 }
 
 int Rotor::getOffset()

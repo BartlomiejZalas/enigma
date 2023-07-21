@@ -2,6 +2,7 @@
 #include "../src/Rotor.h"
 
 TEST(Rotor_test, encode) {
+    //             ABCDEFGHIJKLMNOPQRSTUVWXYZ
     Rotor rotor_I("EKMFLGDQVZNTOWYHXUSPAIBRCJ", 'A');
 
     EXPECT_EQ(rotor_I.encode('A'), 'E');
@@ -25,7 +26,8 @@ TEST(Rotor_test, encode) {
     EXPECT_EQ(rotor_I.encode('S'), 'S');
     EXPECT_EQ(rotor_I.encode('T'), 'P');
     EXPECT_EQ(rotor_I.encode('U'), 'A');
-    EXPECT_EQ(rotor_I.encode('W'), 'B');
+    EXPECT_EQ(rotor_I.encode('U'), 'A');
+    EXPECT_EQ(rotor_I.encode('V'), 'I');
     EXPECT_EQ(rotor_I.encode('X'), 'R');
     EXPECT_EQ(rotor_I.encode('Y'), 'C');
     EXPECT_EQ(rotor_I.encode('Z'), 'J');

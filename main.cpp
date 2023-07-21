@@ -17,7 +17,9 @@ int main()
     vector<pair<char, char>> pairs = {};
     auto plugboard = make_unique<Plugboard>(pairs);
 
-    Enigma enigma(rotorI, rotorII, rotorIII, plugboard);
+    auto ukwB = make_unique<Reflector>("YRUHQSLDPXNGOKMIEBFZCWVJAT");
+
+    Enigma enigma(rotorI, rotorII, rotorIII, plugboard, ukwB);
 
     char toEncode = 'A';
     char encoded = enigma.encode('A');
