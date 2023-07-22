@@ -14,6 +14,7 @@ public:
     Rotor(const char *w, char i);
     void rotate();
     char encode(char letter);
+    char encodeBack(char letter);
     int getOffset();
 };
 

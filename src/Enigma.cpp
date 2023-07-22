@@ -15,7 +15,7 @@ Enigma::Enigma(
 
 char Enigma::encode(const char letter)
 {
-    this->rotorI->rotate();
+    this->rotorIII->rotate();
 
     char encodedByPlugboardStart = this->plugboard->encode(letter);
     debugLog("PLUGBOARD", encodedByPlugboardStart);
@@ -42,13 +42,13 @@ char Enigma::encode(const char letter)
     char encodedByReflector = this->reflector->encode(encodedByRotorI);
     debugLog("REFLECTOR", encodedByReflector);
 
-    char encodedByRotorIReverse = this->rotorI->encode(encodedByReflector);
+    char encodedByRotorIReverse = this->rotorI->encodeBack(encodedByReflector);
     debugLog("ROTOR I", encodedByRotorIReverse);
 
-    char encodedByRotorIIReverse = this->rotorII->encode(encodedByRotorIReverse);
+    char encodedByRotorIIReverse = this->rotorII->encodeBack(encodedByRotorIReverse);
     debugLog("ROTOR II", encodedByRotorIIReverse);
 
-    char encodedByRotorIIIReverse = this->rotorIII->encode(encodedByRotorIIReverse);
+    char encodedByRotorIIIReverse = this->rotorIII->encodeBack(encodedByRotorIIReverse);
     debugLog("ROTOR III", encodedByRotorIIIReverse);
 
     char encodedByPlugboardEnd = this->plugboard->encode(encodedByRotorIIIReverse);

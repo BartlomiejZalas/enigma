@@ -21,6 +21,11 @@ char Rotor::encode(char letter)
     return this->wiringRing.encode(letter, this->offset);
 }
 
+char Rotor::encodeBack(char letter)
+{
+    return this->wiringRing.encodeBack(letter, this->offset);
+}
+
 int Rotor::getOffset()
 {
     return this->offset;
