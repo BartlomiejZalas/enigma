@@ -6,7 +6,7 @@ class WiringRing
 
 private:
     const char *wiring;
-    char findIndex(char letter);
+    int findIndex(char letter);
 
 public:
     WiringRing(const char *w);

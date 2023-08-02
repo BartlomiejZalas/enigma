@@ -17,12 +17,23 @@ char WiringRing::encode(char letter, int offset)
 
 char WiringRing::encodeBack(char letter, int offset)
 {
-    return intToChar(this->findIndex(letter) + 1);
+    int letterIndex = charToInt(letter) + offset;
+    char letterToFind = letterIndex % 26 == 0 ? intToChar(26) : intToChar(letterIndex % 26);
+    int wiringToIndex = this->findIndex(letterToFind);
+    char wiringToLetter = intToChar(wiringToIndex + 1);
+    int wiringShift = charToInt(wiringToLetter) - charToInt(letterToFind);
+    int encodedLetterIndex = charToInt(letter) + wiringShift;
+   
+    return encodedLetterIndex % 26 == 0 ? intToChar(26) : intToChar(encodedLetterIndex % 26);
 }
 
-char WiringRing::findIndex(char letter)
+int WiringRing::findIndex(char letter)
 {
     const char *end = wiring + 26;
     const char *match = find(wiring, end, letter);
-    return (end == match) ? -1 : (match - wiring);
+    if (end == match)
+    {
+        throw invalid_argument("no wiring mapping for: " + letter);
+    }
+    return match - wiring;
 }

@@ -1,7 +1,8 @@
 #include <gtest/gtest.h>
 #include "../src/Rotor.h"
 
-TEST(Rotor_test, encode) {
+TEST(Rotor_test, encode)
+{
     //             ABCDEFGHIJKLMNOPQRSTUVWXYZ
     Rotor rotor_I("EKMFLGDQVZNTOWYHXUSPAIBRCJ", 'A');
 
@@ -33,7 +34,8 @@ TEST(Rotor_test, encode) {
     EXPECT_EQ(rotor_I.encode('Z'), 'J');
 }
 
-TEST(Rotor_test, rotate) {
+TEST(Rotor_test, rotate)
+{
     Rotor rotor_I("EKMFLGDQVZNTOWYHXUSPAIBRCJ", 'A');
     rotor_I.rotate();
 
@@ -42,7 +44,8 @@ TEST(Rotor_test, rotate) {
     EXPECT_EQ(rotor_I.encode('C'), 'E');
 }
 
-TEST(Rotor_test, encodeBack) {
+TEST(Rotor_test, encodeBack)
+{
     //             ABCDEFGHIJKLMNOPQRSTUVWXYZ
     Rotor rotor_I("EKMFLGDQVZNTOWYHXUSPAIBRCJ", 'A');
 
@@ -72,4 +75,38 @@ TEST(Rotor_test, encodeBack) {
     EXPECT_EQ(rotor_I.encodeBack('R'), 'X');
     EXPECT_EQ(rotor_I.encodeBack('C'), 'Y');
     EXPECT_EQ(rotor_I.encodeBack('J'), 'Z');
+}
+
+TEST(Rotor_test, encodeBack_afterRotation)
+{
+    //               ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    Rotor rotor_III("BDFHJLCPRTXVZNYEIWGAKMUSQO", 'A');
+    rotor_III.rotate();
+
+    EXPECT_EQ(rotor_III.encodeBack('E'), 'B');
+    EXPECT_EQ(rotor_III.encodeBack('C'), 'A');
+    EXPECT_EQ(rotor_III.encodeBack('V'), 'Q');
+    EXPECT_EQ(rotor_III.encodeBack('M'), 'M');
+    EXPECT_EQ(rotor_III.encodeBack('B'), 'F');
+    EXPECT_EQ(rotor_III.encodeBack('K'), 'E');
+    EXPECT_EQ(rotor_III.encodeBack('P'), 'X');
+    EXPECT_EQ(rotor_III.encodeBack('S'), 'I');
+    EXPECT_EQ(rotor_III.encodeBack('Q'), 'H');
+    EXPECT_EQ(rotor_III.encodeBack('Z'), 'S');
+    EXPECT_EQ(rotor_III.encodeBack('R'), 'W');
+    EXPECT_EQ(rotor_III.encodeBack('H'), 'P');
+    EXPECT_EQ(rotor_III.encodeBack('I'), 'D');
+    EXPECT_EQ(rotor_III.encodeBack('N'), 'Y');
+    EXPECT_EQ(rotor_III.encodeBack('J'), 'T');
+    EXPECT_EQ(rotor_III.encodeBack('Y'), 'L');
+    EXPECT_EQ(rotor_III.encodeBack('G'), 'C');
+    EXPECT_EQ(rotor_III.encodeBack('T'), 'V');
+    EXPECT_EQ(rotor_III.encodeBack('W'), 'J');
+    EXPECT_EQ(rotor_III.encodeBack('D'), 'O');
+    EXPECT_EQ(rotor_III.encodeBack('A'), 'Z');
+    EXPECT_EQ(rotor_III.encodeBack('F'), 'R');
+    EXPECT_EQ(rotor_III.encodeBack('U'), 'K');
+    EXPECT_EQ(rotor_III.encodeBack('O'), 'G');
+    EXPECT_EQ(rotor_III.encodeBack('X'), 'N');
+    EXPECT_EQ(rotor_III.encodeBack('L'), 'U');
 }
