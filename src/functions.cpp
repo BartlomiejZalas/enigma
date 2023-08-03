@@ -4,12 +4,12 @@ using namespace std;
 
 int charToInt(char letter)
 {
-    return letter - 'A' + 1;
+    return letter - 'A';
 }
 
 char intToChar(int letter)
 {
-    return (char)(letter + 'A' - 1);
+    return (char)(letter + 'A');
 }
 
 void debugLog(string place, char value)

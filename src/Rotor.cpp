@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Rotor::Rotor(const char *w, char initialOffset) : offset(charToInt(initialOffset) - 1)
+Rotor::Rotor(const char *w, char initialOffset) : offset(charToInt(initialOffset))
 {
     this->wiringRing = WiringRing(w);
 };

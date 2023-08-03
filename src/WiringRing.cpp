@@ -9,22 +9,24 @@ WiringRing::WiringRing(const char *w) : wiring(w){};
 
 char WiringRing::encode(char letter, int offset)
 {
-    char wiringToLetter = this->wiring[(charToInt(letter) - 1 + offset) % 26];
+    char wiringToLetter = this->wiring[(charToInt(letter) + offset) % 26];
     int wiringShift = charToInt(wiringToLetter) - (charToInt(letter) + offset % 26);
     int encodedLetterIndex = charToInt(letter) + wiringShift;
-    return intToChar(encodedLetterIndex);
+    int alwaysPositiveEcodedLetterIndex = (encodedLetterIndex + 26) % 26;  
+    return intToChar(alwaysPositiveEcodedLetterIndex);
 }
 
 char WiringRing::encodeBack(char letter, int offset)
 {
     int letterIndex = charToInt(letter) + offset;
-    char letterToFind = letterIndex % 26 == 0 ? intToChar(26) : intToChar(letterIndex % 26);
+    char letterToFind = intToChar(letterIndex % 26);
     int wiringToIndex = this->findIndex(letterToFind);
-    char wiringToLetter = intToChar(wiringToIndex + 1);
+    char wiringToLetter = intToChar(wiringToIndex);
     int wiringShift = charToInt(wiringToLetter) - charToInt(letterToFind);
     int encodedLetterIndex = charToInt(letter) + wiringShift;
-   
-    return encodedLetterIndex % 26 == 0 ? intToChar(26) : intToChar(encodedLetterIndex % 26);
+    int alwaysPositiveEcodedLetterIndex = (encodedLetterIndex + 26) % 26;  
+
+    return intToChar(alwaysPositiveEcodedLetterIndex);
 }
 
 int WiringRing::findIndex(char letter)
