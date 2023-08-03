@@ -44,6 +44,18 @@ TEST(Rotor_test, rotate)
     EXPECT_EQ(rotor_I.encode('C'), 'E');
 }
 
+TEST(Rotor_test, rotate_multiple)
+{
+    Rotor rotor_I("EKMFLGDQVZNTOWYHXUSPAIBRCJ", 'A');
+    for (int i = 0; i <= 26; i++) { 
+        rotor_I.rotate();
+    }
+
+    EXPECT_EQ(rotor_I.encode('A'), 'J');
+    EXPECT_EQ(rotor_I.encode('B'), 'L');
+    EXPECT_EQ(rotor_I.encode('C'), 'E');
+}
+
 TEST(Rotor_test, encodeBack)
 {
     //             ABCDEFGHIJKLMNOPQRSTUVWXYZ

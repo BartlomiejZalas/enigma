@@ -14,6 +14,10 @@ Rotor::Rotor(const char *w, char initialOffset) : offset(charToInt(initialOffset
 void Rotor::rotate()
 {
     ++this->offset;
+    if (this->offset == 26)
+    {
+        this->offset = this->offset % 26;
+    }
 }
 
 char Rotor::encode(char letter)
