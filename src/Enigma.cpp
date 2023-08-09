@@ -17,24 +17,24 @@ char Enigma::encode(const char letter)
 {
     this->rotorIII->rotate();
 
+    if (this->rotorIIITurningNoch == this->rotorIII->getOffset())
+    {
+        this->rotorII->rotate();
+    }
+
+    if (this->rotorIITurningNoch == this->rotorII->getOffset())
+    {
+        this->rotorI->rotate();
+    }
+
     char encodedByPlugboardStart = this->plugboard->encode(letter);
     debugLog("PLUGBOARD", encodedByPlugboardStart);
 
     char encodedByRotorIII = this->rotorIII->encode(encodedByPlugboardStart);
     debugLog("ROTOR III", encodedByRotorIII);
 
-    if (this->rotorIIITurningNoch == this->rotorIII->getOffset())
-    {
-        this->rotorII->rotate();
-    }
-
     char encodedByRotorII = this->rotorII->encode(encodedByRotorIII);
     debugLog("ROTOR II", encodedByRotorII);
-
-    if (this->rotorIITurningNoch == this->rotorII->getOffset())
-    {
-        this->rotorI->rotate();
-    }
 
     char encodedByRotorI = this->rotorI->encode(encodedByRotorII);
     debugLog("ROTOR I", encodedByRotorI);
