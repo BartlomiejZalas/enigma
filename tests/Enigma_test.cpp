@@ -17,14 +17,7 @@ TEST(Enigma_test, should_encode_simple_string_with_rotation)
 
     Enigma enigma(rotorI, rotorII, rotorIII, plugboard, ukwB);
 
-    string toEncode = "AAAAAAAAAAAAAAAAAAAAAAA";
-    string encodedString = "";
-
-    for (int i = 0; i < toEncode.length(); i++) {
-        encodedString += enigma.encode(toEncode[i]);
-    }
-    
-    EXPECT_EQ(encodedString, "BDZGOWCXLTKSBTMCDLPBMUQ");
+    EXPECT_EQ(enigma.encode("AAAAAAAAAAAAAAAAAAAAAAA"), "BDZGOWCXLTKSBTMCDLPBMUQ");
 }
 
 TEST(Enigma_test, should_encode_string_with_rotation)
@@ -40,14 +33,7 @@ TEST(Enigma_test, should_encode_string_with_rotation)
 
     Enigma enigma(rotorI, rotorII, rotorIII, plugboard, ukwB);
 
-    string toEncode = "CONVOYDESTROYED";
-    string encodedString = "";
-
-    for (int i = 0; i < toEncode.length(); i++) {
-        encodedString += enigma.encode(toEncode[i]);
-    }
-    
-    EXPECT_EQ(encodedString, "AEFMLZGZEWFULUW");
+    EXPECT_EQ(enigma.encode("CONVOYDESTROYED"), "AEFMLZGZEWFULUW");
 }
 
 TEST(Enigma_test, should_encode_string_with_plugboard)
@@ -63,12 +49,5 @@ TEST(Enigma_test, should_encode_string_with_plugboard)
 
     Enigma enigma(rotorI, rotorII, rotorIII, plugboard, ukwB);
 
-    string toEncode = "CONVOYDESTROYED";
-    string encodedString = "";
-
-    for (int i = 0; i < toEncode.length(); i++) {
-        encodedString += enigma.encode(toEncode[i]);
-    }
-    
-    EXPECT_EQ(encodedString, "BEFMLZGZEWFULUW");
+    EXPECT_EQ(enigma.encode("CONVOYDESTROYED"), "BEFMLZGZEWFULUW");
 }

@@ -1,4 +1,5 @@
 #include "Enigma.h"
+#include <sstream>
 
 using namespace std;
 
@@ -12,6 +13,14 @@ Enigma::Enigma(
                                 rotorIII(move(r3)),
                                 plugboard(move(pb)),
                                 reflector(move(r)) {}
+
+string Enigma::encode(const string str) {
+    stringstream result;
+    for(const char ch  : str) {
+        result << encode(ch);
+    }
+    return result.str();
+}
 
 char Enigma::encode(const char letter)
 {

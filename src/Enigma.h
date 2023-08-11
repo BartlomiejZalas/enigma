@@ -7,6 +7,7 @@
 #include "functions.h"
 
 #include <memory>
+#include <string>
 
 using namespace std;
 
@@ -35,6 +36,7 @@ public:
         unique_ptr<Reflector> &r);
 
     char encode(char letter);
+    string encode(string letter);
 };
 
 #endif // ENIGMA_H
