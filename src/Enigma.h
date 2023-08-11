@@ -37,6 +37,10 @@ public:
 
     char encode(char letter);
     string encode(string letter);
+
+private:
+    void performRotations();
+    char performEncode(char);
 };
 
 #endif // ENIGMA_H

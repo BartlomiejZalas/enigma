@@ -14,15 +14,23 @@ Enigma::Enigma(
                                 plugboard(move(pb)),
                                 reflector(move(r)) {}
 
-string Enigma::encode(const string str) {
+string Enigma::encode(const string str)
+{
     stringstream result;
-    for(const char ch  : str) {
+    for (const char ch : str)
+    {
         result << encode(ch);
     }
     return result.str();
 }
 
 char Enigma::encode(const char letter)
+{
+    performRotations();
+    return performEncode(letter);
+}
+
+void Enigma::performRotations()
 {
     this->rotorIII->rotate();
 
@@ -35,33 +43,38 @@ char Enigma::encode(const char letter)
     {
         this->rotorI->rotate();
     }
+}
 
-    char encodedByPlugboardStart = this->plugboard->encode(letter);
-    debugLog("PLUGBOARD", encodedByPlugboardStart);
+char Enigma::performEncode(const char letter)
+{
+    char l = letter;
 
-    char encodedByRotorIII = this->rotorIII->encode(encodedByPlugboardStart);
-    debugLog("ROTOR III", encodedByRotorIII);
+    l = this->plugboard->encode(l);
+    debugLog("PLUGBOARD", l);
 
-    char encodedByRotorII = this->rotorII->encode(encodedByRotorIII);
-    debugLog("ROTOR II", encodedByRotorII);
+    l = this->rotorIII->encode(l);
+    debugLog("ROTOR III", l);
 
-    char encodedByRotorI = this->rotorI->encode(encodedByRotorII);
-    debugLog("ROTOR I", encodedByRotorI);
+    l = this->rotorII->encode(l);
+    debugLog("ROTOR II", l);
 
-    char encodedByReflector = this->reflector->encode(encodedByRotorI);
-    debugLog("REFLECTOR", encodedByReflector);
+    l = this->rotorI->encode(l);
+    debugLog("ROTOR I", l);
 
-    char encodedByRotorIReverse = this->rotorI->encodeBack(encodedByReflector);
-    debugLog("ROTOR I", encodedByRotorIReverse);
+    l = this->reflector->encode(l);
+    debugLog("REFLECTOR", l);
 
-    char encodedByRotorIIReverse = this->rotorII->encodeBack(encodedByRotorIReverse);
-    debugLog("ROTOR II", encodedByRotorIIReverse);
+    l = this->rotorI->encodeBack(l);
+    debugLog("ROTOR I", l);
 
-    char encodedByRotorIIIReverse = this->rotorIII->encodeBack(encodedByRotorIIReverse);
-    debugLog("ROTOR III", encodedByRotorIIIReverse);
+    l = this->rotorII->encodeBack(l);
+    debugLog("ROTOR II", l);
 
-    char encodedByPlugboardEnd = this->plugboard->encode(encodedByRotorIIIReverse);
-    debugLog("PLUGBOARD", encodedByPlugboardEnd);
+    l = this->rotorIII->encodeBack(l);
+    debugLog("ROTOR III", l);
 
-    return encodedByPlugboardEnd;
+    l = this->plugboard->encode(l);
+    debugLog("PLUGBOARD", l);
+
+    return l;
 }
