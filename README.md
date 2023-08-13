@@ -1,5 +1,7 @@
 # Enigma Machine
 
+![example workflow](https://github.com/BartlomiejZalas/enigma/actions/workflows/cmake-single-platform.yml/badge.svg)
+
 The project is the software implementation of a cipher device developed and used by Germans during World War II. The implemented solution refers to model M3.
 
 ## Requirements
